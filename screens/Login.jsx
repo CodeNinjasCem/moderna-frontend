@@ -12,9 +12,14 @@ import React, { useEffect, useState } from "react";
 import colors from "../constants/colors";
 import { Input, Icon } from "@rneui/themed";
 import { LinearGradient } from "expo-linear-gradient";
+import { signIn } from "../services/AuthenticationService";
 
 export default function Login(props) {
   const [iconName, setIconName] = useState("eye-slash");
+  const [emailData, setEmailData] = useState({
+    email: "",
+    password: "",
+  });
   const { width, height } = useWindowDimensions();
 
   const handlePassowrdIcon = () => {
@@ -50,7 +55,10 @@ export default function Login(props) {
                 LoginStyles.inputs
               }
             >
-              <Input placeholder="Ingresa correo electrónico" />
+              <Input 
+              onChangeText={(text) => setEmailData({ ...emailData, email: text })}
+              placeholder="Ingresa correo electrónico"
+               />
               <Input
                 placeholder="Contraseña"
                 secureTextEntry={iconName === "eye-slash"}
@@ -61,9 +69,17 @@ export default function Login(props) {
                     onPress={handlePassowrdIcon}
                   />
                 }
+                onChangeText={(text) =>
+                  setEmailData({ ...emailData, password: text })
+                }
               />
               <View style={LoginStyles.buttonContainer}>
-                <Pressable onPress={() => props.navigation.navigate("Index")}>
+                <Pressable onPress={() => {
+                  signIn(emailData).then((response) => {
+                    console.log(response)
+                  // props.navigation.navigate("Index")
+                });
+                  }}>
                   <LinearGradient
                     colors={[colors.PRIMARY, colors.PRIMARY]}
                     start={[0, 0]}

@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { useEffect, useRef, useState } from "react";
 import { Camera } from "expo-camera";
 import { Icon } from "@rneui/base";
-import { classifyImage } from "../services";
+import { classifyImage, getRecommendedRecepiesByName } from "../services";
 import * as FileSystem from "expo-file-system";
 
 export default function Escanear(props) {
@@ -24,8 +24,11 @@ export default function Escanear(props) {
         encoding: "base64",
       }).then((res) => {
         classifyImage(res).then((res) => {
-          props.navigation.navigate("ListaReceta", {
-            params: { image: photo.uri, producto: res.producto},
+          const { producto } = res;
+          getRecommendedRecepiesByName(res.producto).then((res) => {
+            props.navigation.navigate("ListaReceta", {
+              params: { image: photo.uri, producto: producto, recetas: res },
+            });
           });
         });
       });
@@ -54,7 +57,10 @@ export default function Escanear(props) {
   ) : photo ? (
     <View style={styles.cameraContainer}>
       <Image style={styles.cameraPreview} source={{ uri: photo.uri }} />
-      <Pressable onPress={()=>setPhoto(null)} style={styles.buttonPressableContainer}>
+      <Pressable
+        onPress={() => setPhoto(null)}
+        style={styles.buttonPressableContainer}
+      >
         <View style={styles.ButtonContainer}>
           <Icon name="reload" type="material-community" size={40} />
         </View>
@@ -62,7 +68,7 @@ export default function Escanear(props) {
     </View>
   ) : (
     <Camera style={styles.cameraContainer} ref={cameraRef}>
-      <Pressable onPress={takePic} >
+      <Pressable onPress={takePic}>
         <View style={styles.ButtonContainer}>
           <Icon name="camera" type="material-community" size={40} />
         </View>
@@ -90,8 +96,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  buttonPressableContainer:{
+  buttonPressableContainer: {
     position: "absolute",
     bottom: 15,
-  }
+  },
 });

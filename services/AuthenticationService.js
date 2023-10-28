@@ -19,20 +19,13 @@ export const signUp = async (signUpData) => {
 };
 
 export const signIn = async (signInData) => {
-  signInBody = {
-    email: signInData.email,
-    password: signInData.password,
-  };
-
   const res = await axios
-    .post(`${API_BASE_URL}/auth/signin`, {
-      headers: {
-        "Content-Type": "application/json",
+    .post(`${API_BASE_URL}/auth/signin`,
+      {
+        email: signInData.email,
+        password: signInData.password,
       },
-      data: {
-        signInBody,
-      },
-    })
+    )
     .then((res) => {
       return res.message;
     });

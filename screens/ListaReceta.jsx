@@ -6,7 +6,7 @@ import colors from "../constants/colors";
 import DescripcionResumen from "../components/DescripcionResumen";
 
 const ListaReceta = (props) => {
-  const { image, producto } = props.route.params.params;
+  const { image, producto, recetas } = props.route.params.params;
   return (
     <SafeAreaView style={{ backgroundColor: "#fff", flex: 1 }}>
       <View style={
@@ -23,7 +23,7 @@ const ListaReceta = (props) => {
         )}
         <View style={styles.dataContainer}>
           <Text style={styles.headerRecetas}>Seleccione una receta</Text>
-          <ColumnRows navigation={props.navigation} />
+          <ColumnRows navigation={props.navigation} data={recetas}/>
         </View>
       </View>
     </SafeAreaView>
