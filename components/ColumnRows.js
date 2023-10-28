@@ -4,7 +4,7 @@ import ContentRows from "../components/ContentRows";
 
 import React from "react";
 
-const ColumnRows = () => {
+const ColumnRows = (props) => {
   return (
     <ScrollView
     horizontal={false}
@@ -13,7 +13,7 @@ const ColumnRows = () => {
   >
     <View style={styles.container}>
       {/* Cambiar por un map */}
-      <ContentRows />
+      <ContentRows navigation={props.navigation}/>
       <ContentRows />
       <ContentRows />
       <ContentRows />

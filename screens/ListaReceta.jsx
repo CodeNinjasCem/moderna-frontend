@@ -3,6 +3,7 @@ import ClasificadoComponent from "../components/ClasificadoComponent";
 import ColumnRows from "../components/ColumnRows";
 import React from "react";
 import colors from "../constants/colors";
+import DescripcionResumen from "../components/DescripcionResumen";
 
 const ListaReceta = (props) => {
   const { image, producto } = props.route.params.params;
@@ -18,11 +19,11 @@ const ListaReceta = (props) => {
         {image ? (
           <ClasificadoComponent image={image} producto={producto} />
         ) : (
-          <Text>Plan Semanal Dia seleccionado</Text>
+          <DescripcionResumen />
         )}
         <View style={styles.dataContainer}>
           <Text style={styles.headerRecetas}>Seleccione una receta</Text>
-          <ColumnRows />
+          <ColumnRows navigation={props.navigation} />
         </View>
       </View>
     </SafeAreaView>

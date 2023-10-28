@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, Image } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, Image, Pressable } from "react-native";
 import colors from "../constants/colors";
 import React from "react";
 import TrophyImage from "../assets/Trophy.png";
@@ -6,17 +6,19 @@ import StarsImage from "../assets/Stars.png";
 import ImageRow from "../components/ImageRow";
 import ColumnRows from "../components/ColumnRows";
 
-const Inicio = () => {
+const Inicio = (props) => {
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
       <View style={styles.mainContainer}>
-        <View style={styles.profileInfoContainer}>
+        <Pressable 
+        onPress={() => props.navigation.navigate("Account")}
+         style={styles.profileInfoContainer}>
           <View style={styles.imageContainer}></View>
           <View style={styles.profileInfo}>
             <Text style={styles.profileWelcome}>¡Hola!</Text>
             <Text style={styles.profileName}>Usuario Ejemplo</Text>
           </View>
-        </View>
+        </Pressable>
         <View style={styles.promoContainer}>
           <Image style={styles.trophyImage} source={TrophyImage} />
           <View style={styles.promoTextContainer}>

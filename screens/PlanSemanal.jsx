@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import colors from "../constants/colors";
 
-const PlanSemanal = () => {
+const PlanSemanal = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -30,7 +30,7 @@ const PlanSemanal = () => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.customButton}
-          onPress={() => console.log('Botón Generar plan semanal presionado')}
+          onPress={() => props.navigation.navigate("PlanSemanalResultado")}
         >
           <Text style={styles.buttonText}>Generar plan semanal</Text>
         </TouchableOpacity>

@@ -3,9 +3,14 @@ import { Icon } from "@rneui/themed";
 
 import React from "react";
 
-const ContentRows = () => {
+const ContentRows = (props) => {
   return (
-    <Pressable onPress={()=>console.log("Hola")} style={styles.container}>
+    <Pressable onPress={()=>
+      props.navigation.navigate("Recipe", {
+        params: {  },
+      }
+        )
+    } style={styles.container}>
       <Text style={styles.text}>Receta #1</Text>
       <Icon
         style={styles.icon}
