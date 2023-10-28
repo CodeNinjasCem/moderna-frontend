@@ -48,8 +48,10 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     gap: 8,
     paddingVertical: 10,
+    width: "90%",
   },
   productName: {
+    width: "90%",
     fontSize: 18,
     fontWeight: "bold",
     color: colors.SECONDARY,
