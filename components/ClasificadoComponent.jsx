@@ -8,7 +8,7 @@ const ClasificadoComponent = (props) => {
     <View style={styles.mainContainer}>
       <Image
         style={styles.imageContainer}
-        source={{ uri: props.image || "https://picsum.photos/200/300"}}
+        source={{ uri: props.image }}
       />
       <View style={styles.bodyContainer}>
         <Text style={styles.productName}>
