@@ -1,4 +1,4 @@
 const API_BASE_URL = process.env.API_BASE_URL || 'http://10.48.233.198:8080';
-const MODEL_BASE_URL = process.env.MODEL_BASE_URL || 'http://10.48.233.198:8083';
+const MODEL_BASE_URL = process.env.MODEL_BASE_URL || 'http://10.48.238.162:8003';
 
 export { API_BASE_URL, MODEL_BASE_URL};

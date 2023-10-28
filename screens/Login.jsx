@@ -12,10 +12,36 @@ import React, { useEffect, useState } from "react";
 import colors from "../constants/colors";
 import { Input, Icon } from "@rneui/themed";
 import { LinearGradient } from "expo-linear-gradient";
+import { signIn } from "../services/AuthenticationService";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login(props) {
   const [iconName, setIconName] = useState("eye-slash");
   const { width, height } = useWindowDimensions();
+  const [user, setUser] = useState({});
+
+  const handleSubmit = () => {
+    try {
+      signIn(user).then((res) => {
+        console.log("Res: ", res.data.user);
+        storeData(res.data.user);
+        props.navigation.navigate("Index", {
+          email: user.email,
+        });
+      });
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  };
+
+  const storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('my-user', jsonValue);
+    } catch (e) {
+      // saving error
+    }
+  };
 
   const handlePassowrdIcon = () => {
     if (iconName === "eye-slash") {
@@ -50,8 +76,9 @@ export default function Login(props) {
                 LoginStyles.inputs
               }
             >
-              <Input placeholder="Ingresa correo electrónico" />
+              <Input placeholder="Ingresa correo electrónico" onChangeText={(e) => setUser({ ...user, email: e })} />
               <Input
+                onChangeText={(e) => setUser({ ...user, password: e })}
                 placeholder="Contraseña"
                 secureTextEntry={iconName === "eye-slash"}
                 rightIcon={
@@ -63,7 +90,7 @@ export default function Login(props) {
                 }
               />
               <View style={LoginStyles.buttonContainer}>
-                <Pressable onPress={() => props.navigation.navigate("Index")}>
+                <Pressable onPress={() => handleSubmit()}>
                   <LinearGradient
                     colors={[colors.PRIMARY, colors.PRIMARY]}
                     start={[0, 0]}

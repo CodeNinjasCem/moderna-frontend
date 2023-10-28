@@ -1,27 +1,56 @@
 import { StyleSheet, Text, View, SafeAreaView, Pressable } from "react-native";
-import React from "react";
+import React, {useState, useEffect} from "react";
+
 import colors from "../constants/colors";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Cuenta = (props) => {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('my-user');
+        if (jsonValue != null) {
+          setUser(JSON.parse(jsonValue));
+        }
+      } catch (e) {
+        // error reading value
+      }
+    };
+    getData();
+
+  }
+  ,[]);
+
+  const handleCerrarSesion = () => {
+    try {
+      AsyncStorage.removeItem('my-user');
+      props.navigation.navigate("Login");
+    } catch (e) {
+      // saving error
+    }
+  }
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <View style={styles.bannerContainer}>
         <View style={styles.bannerTextContainer}>
-          <Text style={styles.accountName}>Usuario ejemplo</Text>
-          <Text style={styles.accountMail}>correo@ejemplo.com</Text>
+          <Text style={styles.accountName}>{user.first_name + " " + user.last_name}</Text>
+          <Text style={styles.accountMail}>{user.email}</Text>
         </View>
         <View style={styles.pointsContainer}>
-          <Text style={styles.pointsText}>1,230 PUNTOS</Text>
+          <Text style={styles.pointsText}>{user.points} PUNTOS</Text>
         </View>
       </View>
       <View style={styles.moreInfoContainer}>
         <View style={styles.moreInfoElement}>
-          <Text style={styles.moreInfoTitle}>Genero</Text>
-          <Text style={styles.moreInfoDescription}>Masculino</Text>
+          <Text style={styles.moreInfoTitle}>Género</Text>
+          <Text style={styles.moreInfoDescription}>{user.gender}</Text>
         </View>
         <View style={styles.moreInfoElement}>
           <Text style={styles.moreInfoTitle}>Fecha de nacimiento</Text>
-          <Text style={styles.moreInfoDescription}>12/09/2002</Text>
+          <Text style={styles.moreInfoDescription}>12/09/1989</Text>
         </View>
         <View style={styles.buttonContainer}>
           <Pressable style={styles.buttonElement} onPress={

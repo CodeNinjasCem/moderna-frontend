@@ -1,12 +1,33 @@
 import { StyleSheet, Text, View, SafeAreaView, Image, Pressable } from "react-native";
 import colors from "../constants/colors";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TrophyImage from "../assets/Trophy.png";
 import StarsImage from "../assets/Stars.png";
 import ImageRow from "../components/ImageRow";
 import ColumnRows from "../components/ColumnRows";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 const Inicio = (props) => {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('my-user');
+        if (jsonValue != null) {
+          setUser(JSON.parse(jsonValue));
+        }
+      } catch (e) {
+        // error reading value
+      }
+    };
+    getData();
+
+  }
+  ,[]);
+
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
       <View style={styles.mainContainer}>
@@ -16,7 +37,7 @@ const Inicio = (props) => {
           <View style={styles.imageContainer}></View>
           <View style={styles.profileInfo}>
             <Text style={styles.profileWelcome}>¡Hola!</Text>
-            <Text style={styles.profileName}>Usuario Ejemplo</Text>
+            <Text style={styles.profileName}>{user.first_name + " " + user.last_name}</Text>
           </View>
         </Pressable>
         <View style={styles.promoContainer}>
