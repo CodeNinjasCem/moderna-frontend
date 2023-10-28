@@ -31,6 +31,8 @@ export default function Login(props) {
         props.navigation.navigate("Index", {
           email: user.email,
         });
+      }).catch((err) => {
+        console.log(err);
       });
     } catch (error) {
       

@@ -43,6 +43,26 @@ export default function Escanear(props) {
 
   useEffect(() => {
     if (photo) {
+      scan();
+    }
+  }, [photo]);
+
+  const takePic = async () => {
+    try {
+      const options = {
+        quality: 1,
+        base64: true,
+        exif: false,
+      };
+      let newPhoto = await cameraRef.current.takePictureAsync(options);
+      setPhoto(newPhoto);
+    } catch (error) {
+      console.error("Error al tomar la foto", error.message);
+    }
+  };
+
+  const scan = async () => {
+    try {
       FileSystem.readAsStringAsync(photo.uri, {
         encoding: "base64",
       }).then((res) => {
@@ -62,20 +82,8 @@ export default function Escanear(props) {
           });
         });
       });
-    }
-  }, [photo]);
-
-  const takePic = async () => {
-    try {
-      const options = {
-        quality: 1,
-        base64: true,
-        exif: false,
-      };
-      let newPhoto = await cameraRef.current.takePictureAsync(options);
-      setPhoto(newPhoto);
     } catch (error) {
-      console.error("Error al tomar la foto", error.message);
+      console.error("Error al escanear la foto", error.message);
     }
   };
 

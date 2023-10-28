@@ -25,6 +25,8 @@ export default function Register(props) {
       props.navigation.navigate("VerifyCode", {
         email: user.email,
       });
+    }).catch((err) => {
+      console.log(err);
     });
   };
 
