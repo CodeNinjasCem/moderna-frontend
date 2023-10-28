@@ -1,24 +1,15 @@
-import { MODEL_BASE_URL } from "../config";
+import { API_BASE_URL } from "../config";
 import axios from "axios";
 
 export const signUp = async (signUpData) => {
-  signUpBody = {
-    email: signUpData.email,
-    password: signUpData.password,
-    name: signUpData.name,
-    lastName: signUpData.lastName,
-    phone: signUpData.phone,
-    address: signUpData.address,
-  };
-
   const res = await axios
-    .post(`${MODEL_BASE_URL}/auth/signup`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: {
-        signUpBody,
-      },
+    .post(`${API_BASE_URL}/auth/signup`, {
+      email: signUpData.email,
+      password: signUpData.password,
+      first_name: signUpData.firstName,
+      last_name: signUpData.lastName,
+      gender: "male",
+      role: "subscriber",
     })
     .then((res) => {
       return res.message;
@@ -34,7 +25,7 @@ export const signIn = async (signInData) => {
   };
 
   const res = await axios
-    .post(`${MODEL_BASE_URL}/auth/signin`, {
+    .post(`${API_BASE_URL}/auth/signin`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -49,16 +40,16 @@ export const signIn = async (signInData) => {
   return res;
 };
 
-export const verifyToken = async (token) => {
+export const verifyToken = async ({email, token}) => {
   const res = await axios
-    .post(`${MODEL_BASE_URL}/auth/verify`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: {
-        token,
-      },
-    })
+    .post(
+      `${API_BASE_URL}/auth/verify`,
+
+      {
+        "email": email,
+        "verify_code": token
+      }
+    )
     .then((res) => {
       return res.message;
     });
