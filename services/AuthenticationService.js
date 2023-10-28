@@ -47,3 +47,16 @@ export const verifyToken = async ({email, token}) => {
 
   return res;
 };
+
+export const addPoints = async ({email, points}) => {
+  const res = await axios
+    .post(`${API_BASE_URL}/auth/addPoints`, {
+      email: email,
+      points: points,
+    })
+    .then((res) => {
+      return res;
+    });
+
+  return res;
+}

@@ -2,20 +2,43 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { useEffect, useRef, useState } from "react";
 import { Camera } from "expo-camera";
 import { Icon } from "@rneui/base";
-import { classifyImage, getRecommendedRecepiesByName } from "../services";
+import { classifyImage, getRecommendedRecepiesByName, addPoints } from "../services";
 import * as FileSystem from "expo-file-system";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Escanear(props) {
   const [hasPermission, setHasPermission] = useState();
+  const [user, setUser] = useState({});
   const [photo, setPhoto] = useState();
 
   const cameraRef = useRef();
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('my-user');
+      if (jsonValue != null) {
+        setUser(JSON.parse(jsonValue));
+      }
+    } catch (e) {
+      console.log("Error: ", e);
+    }
+  };
+
+  const storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('my-user', jsonValue);
+    } catch (e) {
+      console.log("Error: ", e);
+    }
+  };
 
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === "granted");
     })();
+    getData();
   }, []);
 
   useEffect(() => {
@@ -26,8 +49,15 @@ export default function Escanear(props) {
         classifyImage(res).then((res) => {
           const { producto } = res;
           getRecommendedRecepiesByName(res.producto).then((res) => {
-            props.navigation.navigate("ListaReceta", {
-              params: { image: photo.uri, producto: producto, recetas: res },
+            const recetas = res;
+            addPoints({email: user.email, points: 12}).then((res) => {
+              user.points += 12;
+              setUser({...user});
+              storeData(user).then((res) => {
+                props.navigation.navigate("ListaReceta", {
+                  params: { image: photo.uri, producto: producto, recetas: recetas },
+              });
+            });
             });
           });
         });
