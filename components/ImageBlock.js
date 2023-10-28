@@ -8,7 +8,7 @@ const ImageBlock = () => {
     <View style={styles.container}>
       <Image
         style={styles.image}
-        source={require("../assets/LAMODERNA1.jpg")}
+        source={{uri: "https://i5.walmartimages.com.mx/gr/images/product-images/img_large/00750101831026L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"}}
         />
         <Text style={styles.text}>Producto #1</Text>
     </View>

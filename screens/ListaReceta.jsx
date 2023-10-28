@@ -5,7 +5,7 @@ import React from "react";
 import colors from "../constants/colors";
 
 const ListaReceta = (props) => {
-  const image = props.route.params.params.image;
+  const { image, producto } = props.route.params.params;
   return (
     <SafeAreaView style={{ backgroundColor: "#fff", flex: 1 }}>
       <View style={
@@ -16,7 +16,7 @@ const ListaReceta = (props) => {
         }
       }>
         {image ? (
-          <ClasificadoComponent image={image} />
+          <ClasificadoComponent image={image} producto={producto} />
         ) : (
           <Text>Plan Semanal Dia seleccionado</Text>
         )}

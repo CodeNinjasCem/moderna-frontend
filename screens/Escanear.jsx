@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { useEffect, useRef, useState } from "react";
 import { Camera } from "expo-camera";
 import { Icon } from "@rneui/base";
+import { classifyImage } from "../services";
+import * as FileSystem from "expo-file-system";
 
 export default function Escanear(props) {
   const [hasPermission, setHasPermission] = useState();
@@ -16,6 +18,20 @@ export default function Escanear(props) {
     })();
   }, []);
 
+  useEffect(() => {
+    if (photo) {
+      FileSystem.readAsStringAsync(photo.uri, {
+        encoding: "base64",
+      }).then((res) => {
+        classifyImage(res).then((res) => {
+          props.navigation.navigate("ListaReceta", {
+            params: { image: photo.uri, producto: res.producto},
+          });
+        });
+      });
+    }
+  }, [photo]);
+
   const takePic = async () => {
     try {
       const options = {
@@ -24,9 +40,6 @@ export default function Escanear(props) {
         exif: false,
       };
       let newPhoto = await cameraRef.current.takePictureAsync(options);
-      props.navigation.navigate("ListaReceta", {
-        params: { image: newPhoto.uri },
-      });
       setPhoto(newPhoto);
     } catch (error) {
       console.error("Error al tomar la foto", error.message);

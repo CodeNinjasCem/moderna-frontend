@@ -11,7 +11,7 @@ const ClasificadoComponent = (props) => {
       />
       <View style={styles.bodyContainer}>
         <Text style={styles.productName}>
-            {props.name || "Nombre del producto"}
+            {props.producto || "Nombre del producto"}
         </Text>
         <View style={styles.pointsContainer}>
           <Text style={styles.pointsText}>

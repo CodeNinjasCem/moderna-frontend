@@ -15,5 +15,5 @@ export const classifyImage = async (base64Image) => {
         return res.data;
       });
     
-    return res.message;
+    return res;
   }
