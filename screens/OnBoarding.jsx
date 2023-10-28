@@ -20,20 +20,20 @@ export default function OnBoarding(props) {
     {
       header: "Obtén recetas al instante.",
       description:
-        "Con la ayuda de ésta aplicación puedes obtener recetas para tu día a día usando productos LA MODERNA.",
-      image: require("../assets/LAMODERNA1.jpg"),
+        "Con la ayuda de ésta aplicación puedes obtener recetas para tu día a día usando productos La Moderna.",
+      image: require("../assets/1927.jpg"),
     },
     {
-      header: "Obtén recetas al instante.",
+      header: "Calcula el valor nutrimental de tus recetas.",
       description:
-        "Con la ayuda de ésta aplicación puedes obtener recetas para tu día a día usando productos LA MODERNA.",
-      image: require("../assets/LAMODERNA2.jpg"),
+        "Cada que obtengas una nueva receta en tu inventario, podrás ver el valor nutrimental de la misma.",
+      image: require("../assets/menu-recetas-temporada.jpg"),
     },
     {
-      header: "Obtén recetas al instante.",
+      header: "Explora combinaciones de productos.",
       description:
-        "Con la ayuda de ésta aplicación puedes obtener recetas para tu día a día usando productos LA MODERNA.",
-      image: require("../assets/LAMODERNA3.jpg"),
+        "Puedes explorar combinaciones de productos La Moderna para obtener recetas más variadas.",
+      image: require("../assets/1987.jpg"),
     },
   ];
 
