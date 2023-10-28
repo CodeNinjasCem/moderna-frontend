@@ -136,7 +136,7 @@ import {
                     >
                       <LinearGradient
                         key={`linear-gradient-button-${index}`}
-                        colors={[colors.PRIMARY, colors.SECONDARY]}
+                        colors={[colors.PRIMARY, colors.PRIMARY]}
                         start={[0, 0]}
                         end={[1, 1]}
                         location={[0.25, 1]}
@@ -264,7 +264,6 @@ import {
     },
     button: {
       backgroundColor: "black",
-      color: "white",
       borderRadius: 12,
       alignItems: "center",
       justifyContent: "center",
@@ -272,7 +271,7 @@ import {
     buttonText: {
       fontSize: 18,
       fontWeight: "700",
-      color: "white",
+      color: colors.SECONDARY,
       textAlign: "center",
     },
     dotRootContainer: {
