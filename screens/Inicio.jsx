@@ -5,14 +5,19 @@ import TrophyImage from "../assets/Trophy.png";
 import StarsImage from "../assets/Stars.png";
 import ImageRow from "../components/ImageRow";
 import ColumnRows from "../components/ColumnRows";
-import { getPopularRecepies } from "../services";
+import { getPopularRecepies, getPopularProducts } from "../services";
 
 const Inicio = (props) => {
   const [ recepies, setRecepies ] = useState([]);
+  const [ products, setProducts ] = useState([]);
 
   useEffect(() => {
     getPopularRecepies().then((res) => {
       setRecepies(res);
+    });
+
+    getPopularProducts().then((res) => {
+      setProducts(res);
     });
   }, []);
 
@@ -43,7 +48,7 @@ const Inicio = (props) => {
         </View>
         <View style={styles.productsContainer}>
           <Text style={styles.header}>Productos Recomendados</Text>
-          <ImageRow />
+          <ImageRow data={products}/>
         </View>
         <View style={styles.recipeContainer}>
           <Text style={styles.header}>Recetas Recomendadas</Text>
