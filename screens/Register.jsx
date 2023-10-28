@@ -114,7 +114,7 @@ import {
   
                 <View style={registerStyles.buttonContainer}>
                   <Pressable
-                    onPress={() => props.navigation.navigate("Index")} // TODO: Cambiar a VerifyCode
+                    onPress={() => props.navigation.navigate("VerifyCode")}
                   >
                     <LinearGradient
                       colors={[colors.PRIMARY, colors.PRIMARY]}

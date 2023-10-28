@@ -1,12 +1,11 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTabNavigator from "./components/BottomTabNavigator";
-import { OnBoarding, Login, Register } from "./screens";
+import { OnBoarding, Login, Register, VerifyCode } from "./screens";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="OnBoarding">
@@ -23,6 +22,11 @@ export default function App() {
         <Stack.Screen
           name="Register"
           component={Register}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="VerifyCode"
+          component={VerifyCode}
           options={{ headerShown: false }}
         />
         <Stack.Screen
