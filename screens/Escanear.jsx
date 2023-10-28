@@ -1,22 +1,10 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  Image,
-  Pressable,
-} from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { useEffect, useRef, useState } from "react";
 import { Camera } from "expo-camera";
-import { shareAsync } from "expo-sharing";
-import * as MediaLibrary from "expo-media-library";
-import * as ImageManipulator from "expo-image-manipulator";
-import * as FileSystem from "expo-file-system";
-import colors from "../constants/colors";
+import { Icon } from "@rneui/base";
 
 export default function Escanear(props) {
   const [hasPermission, setHasPermission] = useState();
-  const [hasMediaPermission, setHasMediaPermission] = useState();
   const [photo, setPhoto] = useState();
 
   const cameraRef = useRef();
@@ -25,9 +13,6 @@ export default function Escanear(props) {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === "granted");
-      const { status: mediaStatus } =
-        await MediaLibrary.requestPermissionsAsync();
-      setHasMediaPermission(mediaStatus === "granted");
     })();
   }, []);
 
@@ -39,7 +24,9 @@ export default function Escanear(props) {
         exif: false,
       };
       let newPhoto = await cameraRef.current.takePictureAsync(options);
-      props.navigation.navigate("ListaReceta", { params: {image: newPhoto.uri} });
+      props.navigation.navigate("ListaReceta", {
+        params: { image: newPhoto.uri },
+      });
       setPhoto(newPhoto);
     } catch (error) {
       console.error("Error al tomar la foto", error.message);
@@ -52,13 +39,19 @@ export default function Escanear(props) {
       desde configuraciones.
     </Text>
   ) : photo ? (
+    <View style={styles.cameraContainer}>
       <Image style={styles.cameraPreview} source={{ uri: photo.uri }} />
+      <Pressable onPress={()=>setPhoto(null)} style={styles.buttonPressableContainer}>
+        <View style={styles.ButtonContainer}>
+          <Icon name="reload" type="material-community" size={40} />
+        </View>
+      </Pressable>
+    </View>
   ) : (
     <Camera style={styles.cameraContainer} ref={cameraRef}>
-      <Pressable 
-        onPress = {takePic}
-      >
+      <Pressable onPress={takePic} >
         <View style={styles.ButtonContainer}>
+          <Icon name="camera" type="material-community" size={40} />
         </View>
       </Pressable>
     </Camera>
@@ -81,5 +74,11 @@ const styles = StyleSheet.create({
     height: 75,
     width: 75,
     marginBottom: 16,
+    alignItems: "center",
+    justifyContent: "center",
   },
+  buttonPressableContainer:{
+    position: "absolute",
+    bottom: 15,
+  }
 });

@@ -1,19 +1,18 @@
-import { StyleSheet, Text, View } from "react-native";
-import { Input, Icon } from "@rneui/themed";
+import { StyleSheet, Text, View, Pressable } from "react-native";
+import { Icon } from "@rneui/themed";
 
 import React from "react";
 
 const ContentRows = () => {
   return (
-    <View style={styles.container}>
+    <Pressable onPress={()=>console.log("Hola")} style={styles.container}>
       <Text style={styles.text}>Receta #1</Text>
       <Icon
         style={styles.icon}
         name={"angle-right"}
         type="font-awesome"
-        onPress={() => console.log("hello")}
       />
-    </View>
+    </Pressable>
   );
 };
 
