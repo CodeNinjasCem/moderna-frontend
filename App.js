@@ -16,7 +16,7 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Inicio"
+          name="Index"
           component={BottomTabNavigator}
           options={{ headerShown: false }}
         />

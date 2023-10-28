@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Inicio"
+      initialRouteName="Index"
       screenOptions={{
         headerShown: false,
         inactiveTintColor: "gray",

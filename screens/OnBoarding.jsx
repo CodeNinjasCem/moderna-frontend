@@ -43,7 +43,7 @@ import {
           animated: true,
         });
       } else if (index === onBoardingSteps.length - 1) {
-        return props.navigation.navigate("Inicio"); //Cambiar a login
+        return props.navigation.navigate("Index"); //Cambiar a login
       }
     };
   
