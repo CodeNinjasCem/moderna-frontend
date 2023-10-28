@@ -10,6 +10,7 @@ const ImageRow = () => {
       horizontal={true}
       style={styles.scrollView}
       showsHorizontalScrollIndicator={false}
+      
     >
       <View style={styles.container}>
         {/* Cambiar por un map */}
@@ -27,20 +28,21 @@ const ImageRow = () => {
 export default ImageRow;
 
 const styles = StyleSheet.create({
-  scrollView: {},
+  scrollView: {
+    maxHeight: 130,
+  },
   container: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
-    marginLeft: 20,
     gap: 20,
-    marginBottom: 20,
+    height: 130,
   },
   image: {
     width: 100,
     height: 100,
-    borderRadius: 10,
+    borderRadius: 20,
   },
   text: {
     marginTop: 10,

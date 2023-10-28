@@ -10,7 +10,7 @@ const ImageBlock = () => {
         style={styles.image}
         source={require("../assets/LAMODERNA1.jpg")}
         />
-        <Text style={styles.text}>Receta #1</Text>
+        <Text style={styles.text}>Producto #1</Text>
     </View>
   );
 };
@@ -19,7 +19,6 @@ export default ImageBlock;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 300,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
   },
   text: {
     marginTop: 10,
-    fontSize: 20,
+    fontSize: 14,
     fontWeight: "bold",
     color: "black",
     textAlign: "center",

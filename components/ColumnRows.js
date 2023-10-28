@@ -28,5 +28,6 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "column",
+    gap: 24,
   },
 });

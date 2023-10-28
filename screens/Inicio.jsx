@@ -3,43 +3,41 @@ import colors from "../constants/colors";
 import React from "react";
 import TrophyImage from "../assets/Trophy.png";
 import StarsImage from "../assets/Stars.png";
+import ImageRow from "../components/ImageRow";
+import ColumnRows from "../components/ColumnRows";
 
 const Inicio = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "white" }}>
       <View style={styles.mainContainer}>
         <View style={styles.profileInfoContainer}>
-          <View style={styles.imageContainer}>
-          </View>
+          <View style={styles.imageContainer}></View>
           <View style={styles.profileInfo}>
-            <Text style={styles.profileWelcome}>
-              ¡Hola!
-            </Text>
-            <Text style={styles.profileName}>
-              Usuario Ejemplo
-            </Text>
+            <Text style={styles.profileWelcome}>¡Hola!</Text>
+            <Text style={styles.profileName}>Usuario Ejemplo</Text>
           </View>
         </View>
         <View style={styles.promoContainer}>
-          <Image
-            style={styles.trophyImage}
-            source={TrophyImage}
-          />
+          <Image style={styles.trophyImage} source={TrophyImage} />
           <View style={styles.promoTextContainer}>
             <Text style={styles.promoHeaderText}>
               Gana puntos al escanear productos MODERNA
             </Text>
             <Text style={styles.promoBodyText}>
-              Al escanear productos se te bonificaran puntos que podrás canjear por recompensas. 
+              Al escanear productos se te bonificaran puntos que podrás canjear
+              por recompensas.
             </Text>
           </View>
-          <Image
-            style={styles.starsImage}
-            source={StarsImage}
-          />
+          <Image style={styles.starsImage} source={StarsImage} />
         </View>
-        <View style={styles.productsContainer}></View>
-        <View style={styles.recepiesContainer}></View>
+        <View style={styles.productsContainer}>
+          <Text style={styles.header}>Productos Recomendados</Text>
+          <ImageRow />
+        </View>
+        <View style={styles.recipeContainer}>
+          <Text style={styles.header}>Recetas Recomendadas</Text>
+          <ColumnRows />
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -124,4 +122,20 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: colors.LIGHT_GRAY,
   },
+  header: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: colors.SECONDARY,
+  },
+  productsContainer: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    width: "100%",
+    gap: 12,
+  },
+  recipeContainer: {
+    gap: 12,
+    paddingVertical: 12,
+  }
 });
