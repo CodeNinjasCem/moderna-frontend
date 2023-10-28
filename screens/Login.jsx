@@ -79,7 +79,7 @@ export default function Login(props) {
                 <Text>¿Todavía no estás registrado?</Text>
                 <Pressable
                   onPress={() => {
-                    props.navigation.navigate("Index"); // TODO: Cambiar a Register
+                    props.navigation.navigate("Register");
                   }}
                 >
                   <Text style={{ color: colors.PRIMARY }}>Regístrate</Text>
