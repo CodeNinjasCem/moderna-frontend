@@ -27,14 +27,13 @@ export default function Login(props) {
   const handleSubmit = () => {
     try {
       signIn(user).then((res) => {
-        console.log("Res: ", res.data.user);
         storeData(res.data.user);
         props.navigation.navigate("Index", {
           email: user.email,
         });
       });
     } catch (error) {
-      console.log("Error: ", error);
+      
     }
   };
 

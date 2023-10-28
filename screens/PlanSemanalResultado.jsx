@@ -23,7 +23,7 @@ const PlanSemanalResultado = (props) => {
           data = {recipe_name: `Se generaron ${recipes.length} recetas`}
           return (
           <View key={index} style={styles.squareContent}>
-            <Text style={styles.squareTitle}>Día {index}</Text>
+            <Text style={styles.squareTitle}>Día {index + 1}</Text>
             <ContentRows navigation={props.navigation} data={data} recipes={recipes}/>
           </View>);
         })}

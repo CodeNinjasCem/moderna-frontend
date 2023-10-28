@@ -7,6 +7,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Cuenta = (props) => {
   const [user, setUser] = useState({});
 
+  const generoMap = {
+    male: "Masculino",
+    female: "Femenino",
+    not_disclosed: "Otro",
+  };
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -46,7 +52,7 @@ const Cuenta = (props) => {
       <View style={styles.moreInfoContainer}>
         <View style={styles.moreInfoElement}>
           <Text style={styles.moreInfoTitle}>Género</Text>
-          <Text style={styles.moreInfoDescription}>{user.gender}</Text>
+          <Text style={styles.moreInfoDescription}>{generoMap[user.gender]}</Text>
         </View>
         <View style={styles.moreInfoElement}>
           <Text style={styles.moreInfoTitle}>Fecha de nacimiento</Text>
@@ -54,7 +60,7 @@ const Cuenta = (props) => {
         </View>
         <View style={styles.buttonContainer}>
           <Pressable style={styles.buttonElement} onPress={
-            () => props.navigation.navigate("Inicio")
+            () => handleCerrarSesion()
           }>
             <Text style={styles.buttonText}>Cerrar sesión</Text>
           </Pressable>

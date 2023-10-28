@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, SafeAreaView, ScrollView } from "react-native";
 
 const Recipe = (props) => {
   const { data } = props.route.params.params;
-  console.log(data);
   return (
     <SafeAreaView style={recipeStyles.safeArea}>
       <View style={recipeStyles.container}>

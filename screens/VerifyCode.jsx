@@ -207,7 +207,6 @@ export default function VerifyCode(props) {
                   fifthInput.toString() +
                   sixthInput.toString();
                 verifyToken({ email, token }).then((response) => {
-                  console.log(response);
                   props.navigation.navigate("Index");
                 });
               }}

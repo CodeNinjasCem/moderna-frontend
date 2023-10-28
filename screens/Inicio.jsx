@@ -7,6 +7,7 @@ import ImageRow from "../components/ImageRow";
 import ColumnRows from "../components/ColumnRows";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getPopularRecepies, getPopularProducts } from "../services";
+import Codito from "../assets/codito.jpg";
 
 
 const Inicio = (props) => {
@@ -43,7 +44,12 @@ const Inicio = (props) => {
         <Pressable 
         onPress={() => props.navigation.navigate("Account")}
          style={styles.profileInfoContainer}>
-          <View style={styles.imageContainer}></View>
+          <View style={styles.imageContainer}>
+            <Image
+              style={{ width: 50, height: 50, borderRadius: 50 }}
+              source={Codito}
+            />
+          </View>
           <View style={styles.profileInfo}>
             <Text style={styles.profileWelcome}>¡Hola!</Text>
             <Text style={styles.profileName}>{user.first_name + " " + user.last_name}</Text>
@@ -97,7 +103,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 50,
-    backgroundColor: colors.SECONDARY,
+
   },
   profileInfo: {
     flexDirection: "column",

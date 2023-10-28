@@ -1,14 +1,39 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTabNavigator from "./components/BottomTabNavigator";
-import { OnBoarding, Login, Register, VerifyCode, ListaReceta, Cuenta, PlanSemanalResultado, Recipe } from "./screens";
+import {
+  OnBoarding,
+  Login,
+  Register,
+  VerifyCode,
+  ListaReceta,
+  Cuenta,
+  PlanSemanalResultado,
+  Recipe,
+} from "./screens";
+import React, { useState, useEffect } from "react";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const getData = async (props) => {
+      try {
+        const jsonValue = await AsyncStorage.getItem("my-user");
+        if (jsonValue != null) {
+          setUser(JSON.parse(jsonValue));
+        }
+      } catch (e) {
+        // error reading value
+      }
+    };
+    getData();
+  }, []);
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="OnBoarding">
+      <Stack.Navigator initialRouteName= {user ? "Index" : "OnBoarding"}>
         <Stack.Screen
           name="OnBoarding"
           component={OnBoarding}
