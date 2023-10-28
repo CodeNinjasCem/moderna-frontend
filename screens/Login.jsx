@@ -17,6 +17,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login(props) {
   const [iconName, setIconName] = useState("eye-slash");
+  const [emailData, setEmailData] = useState({
+    email: "",
+    password: "",
+  });
   const { width, height } = useWindowDimensions();
   const [user, setUser] = useState({});
 

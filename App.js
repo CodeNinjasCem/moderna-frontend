@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="OnBoarding">
+      <Stack.Navigator initialRouteName="Index">
         <Stack.Screen
           name="OnBoarding"
           component={OnBoarding}

@@ -5,6 +5,7 @@ import ContentRows from "../components/ContentRows";
 import React from "react";
 
 const ColumnRows = (props) => {
+  const data = props.data || [];
   return (
     <ScrollView
     horizontal={false}
@@ -12,11 +13,11 @@ const ColumnRows = (props) => {
     showsVerticalScrollIndicator={false}
   >
     <View style={styles.container}>
-      {/* Cambiar por un map */}
-      <ContentRows navigation={props.navigation}/>
-      <ContentRows />
-      <ContentRows />
-      <ContentRows />
+      {
+        data.map((item, index) => {
+          return <ContentRows key={index} navigation={props.navigation} data={item} />
+        })
+      }
     </View>
   </ScrollView>
   );

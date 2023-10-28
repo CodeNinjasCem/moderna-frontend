@@ -3,14 +3,14 @@ import { Input, Icon } from "@rneui/themed";
 
 import React from "react";
 
-const ImageBlock = () => {
+const ImageBlock = (props) => {
   return (
     <View style={styles.container}>
       <Image
         style={styles.image}
-        source={{uri: "https://i5.walmartimages.com.mx/gr/images/product-images/img_large/00750101831026L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"}}
+        source={{uri: props.data ? props.data.img_link : "https://i5.walmartimages.com.mx/gr/images/product-images/img_large/00750101831026L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"}}
         />
-        <Text style={styles.text}>Producto #1</Text>
+        <Text style={styles.text}>{props.data ? props.data.name : "Producto #1"}</Text>
     </View>
   );
 };

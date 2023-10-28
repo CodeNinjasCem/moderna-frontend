@@ -4,7 +4,9 @@ import ImageBlock from "./ImageBlock";
 
 import React from "react";
 
-const ImageRow = () => {
+const ImageRow = (props) => {
+  const data = props.data || [];
+
   return (
     <ScrollView
       horizontal={true}
@@ -13,13 +15,14 @@ const ImageRow = () => {
       
     >
       <View style={styles.container}>
-        {/* Cambiar por un map */}
-        <ImageBlock />
-        <ImageBlock />
-        <ImageBlock />
-        <ImageBlock />
-        <ImageBlock />
-        <ImageBlock />
+        {data.map((item, index) => {
+          return (
+            <ImageBlock
+              key={index}
+              data={item}
+            />
+          );
+        })}
       </View>
     </ScrollView>
   );

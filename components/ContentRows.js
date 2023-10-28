@@ -7,11 +7,11 @@ const ContentRows = (props) => {
   return (
     <Pressable onPress={()=>
       props.navigation.navigate("Recipe", {
-        params: {  },
+        params: { "data": props.data },
       }
         )
     } style={styles.container}>
-      <Text style={styles.text}>Receta #1</Text>
+      <Text style={styles.text}>{props.data ? props.data.recipe_name : "Receta #1"}</Text>
       <Icon
         style={styles.icon}
         name={"angle-right"}
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
   text: {
+    width: "90%",
     fontSize: 16,
   },
   icon: {

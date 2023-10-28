@@ -1,4 +1,10 @@
 import { classifyImage } from "./ModelService";
+import { getRecommendedRecepiesByName, getPopularRecepies } from "./RecipeService";
+import { getPopularProducts } from "./ProductService";
 
 export {
-    classifyImage,}
+    classifyImage, 
+    getRecommendedRecepiesByName,
+    getPopularRecepies,
+    getPopularProducts
+}

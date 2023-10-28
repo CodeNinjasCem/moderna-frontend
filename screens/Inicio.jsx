@@ -6,13 +6,24 @@ import StarsImage from "../assets/Stars.png";
 import ImageRow from "../components/ImageRow";
 import ColumnRows from "../components/ColumnRows";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { getPopularRecepies, getPopularProducts } from "../services";
 
 
 const Inicio = (props) => {
   const [user, setUser] = useState({});
 
+  const [ recepies, setRecepies ] = useState([]);
+  const [ products, setProducts ] = useState([]);
+
   useEffect(() => {
+    getPopularRecepies().then((res) => {
+      setRecepies(res);
+    });
+
+    getPopularProducts().then((res) => {
+      setProducts(res);
+    });
+
     const getData = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem('my-user');
@@ -24,9 +35,7 @@ const Inicio = (props) => {
       }
     };
     getData();
-
-  }
-  ,[]);
+  }, []);
 
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
@@ -55,11 +64,11 @@ const Inicio = (props) => {
         </View>
         <View style={styles.productsContainer}>
           <Text style={styles.header}>Productos Recomendados</Text>
-          <ImageRow />
+          <ImageRow data={products}/>
         </View>
         <View style={styles.recipeContainer}>
           <Text style={styles.header}>Recetas Recomendadas</Text>
-          <ColumnRows />
+          <ColumnRows data={recepies} navigation={props.navigation} />
         </View>
       </View>
     </SafeAreaView>
