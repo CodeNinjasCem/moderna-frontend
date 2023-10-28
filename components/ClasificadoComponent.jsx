@@ -3,7 +3,6 @@ import React from "react";
 import colors from "../constants/colors";
 
 const ClasificadoComponent = (props) => {
-    console.log(props.image);
   return (
     <View style={styles.mainContainer}>
       <Image
