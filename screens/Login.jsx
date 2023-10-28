@@ -34,7 +34,7 @@ export default function Login(props) {
         <View
           style={[LoginStyles.mainContainer, { width: width, height: height }]}
         >
-          <View style={[LoginStyles.body, { gap: 16 }]}>
+          <View style={LoginStyles.body}>
             <Text
               style={[
                 LoginStyles.header,
@@ -46,14 +46,9 @@ export default function Login(props) {
               ¡Bienvenido!
             </Text>
             <View
-              style={[
-                LoginStyles.inputs,
-                {
-                  width: width * 0.8,
-                  height: height * 0.4,
-                  justifyContent: "space-around",
-                },
-              ]}
+              style={
+                LoginStyles.inputs
+              }
             >
               <Input placeholder="Ingresa correo electrónico" />
               <Input
@@ -105,19 +100,15 @@ const LoginStyles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    gap: 16,
     paddingBottom: 32,
-    flex: 1,
-  },
-  image: {
-    resizeMode: "contain",
   },
   body: {
     width: "100%",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-around",
     alignItems: "center",
+    justifyContent: "center",
+    gap: 80,
   },
   header: {
     fontWeight: "800",
@@ -125,20 +116,10 @@ const LoginStyles = StyleSheet.create({
   },
   inputs: {
     display: "flex",
+    width: "80%",
     flexDirection: "column",
     alignItems: "center",
-    gap: 16,
-  },
-  forgotPassWordContainer: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-  },
-  forgotPassWord: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: colors.PRIMARY,
+    gap: 40,
   },
   buttonContainer: {
     width: "100%",
