@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTabNavigator from "./components/BottomTabNavigator";
-import { OnBoarding, Login, Register, VerifyCode } from "./screens";
+import { OnBoarding, Login, Register, VerifyCode, ListaReceta } from "./screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +32,11 @@ export default function App() {
         <Stack.Screen
           name="Index"
           component={BottomTabNavigator}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ListaReceta"
+          component={ListaReceta}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

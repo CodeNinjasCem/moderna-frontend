@@ -39,6 +39,7 @@ export default function Escanear(props) {
         exif: false,
       };
       let newPhoto = await cameraRef.current.takePictureAsync(options);
+      props.navigation.navigate("ListaReceta", { params: {image: newPhoto.uri} });
       setPhoto(newPhoto);
     } catch (error) {
       console.error("Error al tomar la foto", error.message);

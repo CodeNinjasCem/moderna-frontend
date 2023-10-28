@@ -5,5 +5,6 @@ import OnBoarding from "./OnBoarding";
 import Login from "./Login";
 import Register from "./Register";
 import VerifyCode from "./VerifyCode";
+import ListaReceta from "./ListaReceta";
 
-export {  Escanear, Inicio, PlanSemanal, OnBoarding, Login, Register, VerifyCode };
+export {  Escanear, Inicio, PlanSemanal, OnBoarding, Login, Register, VerifyCode, ListaReceta };
