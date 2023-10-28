@@ -1,7 +1,8 @@
 import { classifyImage } from "./ModelService";
-import { getRecommendedRecepiesByName } from "./RecipeService";
+import { getRecommendedRecepiesByName, getPopularRecepies } from "./RecipeService";
 
 export {
     classifyImage, 
-    getRecommendedRecepiesByName
+    getRecommendedRecepiesByName,
+    getPopularRecepies
 }

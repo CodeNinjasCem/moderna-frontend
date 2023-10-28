@@ -10,3 +10,13 @@ export const getRecommendedRecepiesByName = async (name) => {
 
   return res;
 };
+
+export const getPopularRecepies = async () => {
+  const res = await axios
+    .get(`${API_BASE_URL}/recipe/popular`)
+    .then((res) => {
+      return res.data.data;
+    });
+
+  return res;
+};

@@ -1,12 +1,21 @@
 import { StyleSheet, Text, View, SafeAreaView, Image, Pressable } from "react-native";
 import colors from "../constants/colors";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TrophyImage from "../assets/Trophy.png";
 import StarsImage from "../assets/Stars.png";
 import ImageRow from "../components/ImageRow";
 import ColumnRows from "../components/ColumnRows";
+import { getPopularRecepies } from "../services";
 
 const Inicio = (props) => {
+  const [ recepies, setRecepies ] = useState([]);
+
+  useEffect(() => {
+    getPopularRecepies().then((res) => {
+      setRecepies(res);
+    });
+  }, []);
+
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
       <View style={styles.mainContainer}>
@@ -38,7 +47,7 @@ const Inicio = (props) => {
         </View>
         <View style={styles.recipeContainer}>
           <Text style={styles.header}>Recetas Recomendadas</Text>
-          <ColumnRows />
+          <ColumnRows data={recepies} navigation={props.navigation} />
         </View>
       </View>
     </SafeAreaView>
