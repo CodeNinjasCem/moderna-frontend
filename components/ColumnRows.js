@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, ScrollView, Text, View } from "react-native";
 import { Input, Icon } from "@rneui/themed";
 import ContentRows from "../components/ContentRows";
 
@@ -6,6 +6,11 @@ import React from "react";
 
 const ColumnRows = () => {
   return (
+    <ScrollView
+    horizontal={false}
+    style={styles.scrollView}
+    showsVerticalScrollIndicator={false}
+  >
     <View style={styles.container}>
       {/* Cambiar por un map */}
       <ContentRows />
@@ -13,6 +18,7 @@ const ColumnRows = () => {
       <ContentRows />
       <ContentRows />
     </View>
+  </ScrollView>
   );
 };
 
