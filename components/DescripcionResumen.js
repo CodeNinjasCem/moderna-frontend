@@ -3,11 +3,11 @@ import { Icon } from "@rneui/themed";
 
 import React from "react";
 
-const DescripcionResumen = () => {
+const DescripcionResumen = (props) => {
   return (
     <View style={styles.container}>
         <Text style={styles.principalText}>Recetas encontradas</Text>
-        <Text style={styles.secondaryText}>Recetas generadas para N personas</Text>
+        <Text style={styles.secondaryText}>Recetas generadas para {props.numDias ? `${props.numDias} ${props.numDias > 1 ? "días" : "día"}` : "1 día"}</Text>
     </View>
   );
 };

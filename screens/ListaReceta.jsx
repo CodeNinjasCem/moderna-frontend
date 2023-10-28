@@ -14,6 +14,7 @@ const ListaReceta = (props) => {
           height: "100%",
           marginTop: 24,
           gap: 12,
+          padding: image ? 0 : 24,
         }
       }>
         {image ? (

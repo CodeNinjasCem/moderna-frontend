@@ -20,3 +20,12 @@ export const getPopularRecepies = async () => {
 
   return res;
 };
+
+export const getWeekPlan = async (days) => {
+  const res = await axios
+    .get(`${API_BASE_URL}/recipe/weekplan/${days}`)
+    .then((res) => {
+      return res.data.data;
+    });
+  return res;
+}
