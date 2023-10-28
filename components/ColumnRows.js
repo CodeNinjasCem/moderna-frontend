@@ -6,6 +6,7 @@ import React from "react";
 
 const ColumnRows = (props) => {
   const data = props.data || [];
+  console.log("PROPS: ", props.data);
   return (
     <ScrollView
     horizontal={false}
